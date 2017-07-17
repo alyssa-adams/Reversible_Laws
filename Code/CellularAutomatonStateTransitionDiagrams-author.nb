@@ -1,0 +1,1291 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     53778,       1282]
+NotebookOptionsPosition[     49374,       1144]
+NotebookOutlinePosition[     50992,       1195]
+CellTagsIndexPosition[     50664,       1183]
+WindowFrame->Normal
+ContainsDynamic->True *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Cellular Automaton State Transition Diagrams", "DemoTitle",
+ CellChangeTimes->{3.35696210375764*^9, 3.36898088679255*^9},
+ CellID->700863240],
+
+Cell["", "InitializationSection"],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{"icon", ",", 
+       RowBox[{"Labeled", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"Grid", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Column", "[", 
+               RowBox[{
+                RowBox[{"Map", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"ArrayPlot", "[", 
+                    RowBox[{
+                    RowBox[{"{", "#", "}"}], ",", 
+                    RowBox[{"Mesh", "\[Rule]", "True"}], ",", 
+                    RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+                    RowBox[{"ImageSize", "\[Rule]", 
+                    RowBox[{"8", 
+                    RowBox[{"Length", "[", "#", "]"}]}]}]}], "]"}], "&"}], 
+                  ",", "#"}], "]"}], ",", "Center", ",", 
+                RowBox[{"Spacings", "\[Rule]", ".025"}]}], "]"}], "&"}], "/@",
+              
+             RowBox[{"Thread", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Tuples", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"1", ",", "0"}], "}"}], ",", "3"}], "]"}], ",", 
+                RowBox[{"List", "/@", 
+                 RowBox[{"IntegerDigits", "[", 
+                  RowBox[{"rn", ",", "2", ",", "8"}], "]"}]}]}], "}"}], 
+              "]"}]}], "}"}], ",", 
+           RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+           RowBox[{"FrameStyle", "\[Rule]", 
+            RowBox[{"GrayLevel", "[", 
+             RowBox[{"1", "/", "GoldenRatio"}], "]"}]}]}], "]"}]}], "]"}], 
+       ",", "#"}], "]"}], "&"}], "[", 
+    RowBox[{"GraphPlot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"#", "\[Rule]", 
+         RowBox[{"CellularAutomaton", "[", 
+          RowBox[{"rn", ",", "#"}], "]"}]}], "&"}], "/@", 
+       RowBox[{"Tuples", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"1", ",", "0"}], "}"}], ",", "w"}], "]"}]}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"500", ",", "375"}], "}"}]}], ",", 
+      RowBox[{"VertexRenderingFunction", "\[Rule]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"p", "=", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Darker", "[", 
+                RowBox[{"Blue", ",", ".7"}], "]"}], ",", 
+               RowBox[{"Point", "[", "#", "]"}]}], "}"}]}], "}"}], ",", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"!", "label"}], ",", "p", ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"w", "<", "7"}], ",", 
+               RowBox[{"Inset", "[", 
+                RowBox[{
+                 RowBox[{"ArrayPlot", "[", 
+                  RowBox[{
+                   RowBox[{"{", "#2", "}"}], ",", 
+                   RowBox[{"Mesh", "\[Rule]", "True"}], ",", 
+                   RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+                   RowBox[{"ImageSize", "\[Rule]", 
+                    RowBox[{"7", 
+                    RowBox[{"{", " ", 
+                    RowBox[{
+                    RowBox[{"Length", "[", "#2", "]"}], ",", "1"}], 
+                    "}"}]}]}]}], "]"}], ",", "#"}], "]"}], ",", 
+               RowBox[{"Tooltip", "[", 
+                RowBox[{"p", ",", 
+                 RowBox[{"Dynamic", "[", 
+                  RowBox[{"ArrayPlot", "[", 
+                   RowBox[{
+                    RowBox[{"{", "#2", "}"}], ",", 
+                    RowBox[{"Mesh", "\[Rule]", "True"}], ",", 
+                    RowBox[{"Frame", "\[Rule]", "False"}], ",", 
+                    RowBox[{"ImageSize", "\[Rule]", 
+                    RowBox[{"7", 
+                    RowBox[{"{", " ", 
+                    RowBox[{
+                    RowBox[{"Length", "[", "#2", "]"}], ",", "1"}], 
+                    "}"}]}]}]}], "]"}], "]"}]}], "]"}]}], "]"}]}], "]"}]}], 
+          "]"}], "&"}], ")"}]}], ",", 
+      RowBox[{"DirectedEdges", "\[Rule]", "True"}]}], "]"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rn", ",", "110", ",", "\"\<rule number\>\""}], "}"}], ",", "0",
+      ",", "255", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"w", ",", "5", ",", "\"\<width\>\""}], "}"}], ",", "3", ",", 
+     "12", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"label", ",", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"w", "<", "7"}], ",", "True", ",", "False"}], "]"}], ",", 
+       "\"\<show states\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"icon", ",", "False", ",", "\"\<show rule icon\>\""}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "20"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", "5"}], "}"}]}], "}"}]}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35757176568782*^9, 3.36898089469123*^9, {3.377548015774864*^9, 
+   3.377548081138174*^9}, {3.380559999605199*^9, 3.3805601093322268`*^9}, {
+   3.380560173414817*^9, 3.380560235299635*^9}, {3.38056028518624*^9, 
+   3.380560285790492*^9}, {3.3805604420736732`*^9, 3.380560516043664*^9}, {
+   3.380560862515039*^9, 3.38056087136593*^9}, {3.3805611846338873`*^9, 
+   3.380561220796226*^9}, {3.380561250804249*^9, 3.380561260570402*^9}, {
+   3.38056134244901*^9, 3.380561479926943*^9}, {3.380561536395874*^9, 
+   3.380561556146891*^9}, {3.380561681770783*^9, 3.380561688010141*^9}, {
+   3.380561759406321*^9, 3.380561835137865*^9}, {3.380561875837636*^9, 
+   3.380561876021365*^9}, {3.380562093937911*^9, 3.380562094360239*^9}, {
+   3.380562132268127*^9, 3.3805621628917513`*^9}, {3.380562208433897*^9, 
+   3.380562401194478*^9}, {3.380562747695128*^9, 3.380562749426152*^9}, {
+   3.380562790018396*^9, 3.380562791260541*^9}, {3.3805628474255667`*^9, 
+   3.3805629235725107`*^9}, {3.380562961289001*^9, 3.380562962464468*^9}, {
+   3.3805630123494387`*^9, 3.380563013011031*^9}, {3.380563111818225*^9, 
+   3.380563113647882*^9}, {3.38056349273662*^9, 3.3805635898093987`*^9}, {
+   3.3805638036587954`*^9, 3.380563839198251*^9}, {3.380565142889147*^9, 
+   3.3805651733167877`*^9}, {3.381089383391119*^9, 3.381089383729697*^9}, {
+   3.381528382815406*^9, 3.381528450783584*^9}, {3.3815285468267813`*^9, 
+   3.3815285854366713`*^9}, {3.381528628684462*^9, 3.3815286964731607`*^9}, {
+   3.381528887061925*^9, 3.381528917336381*^9}, {3.381528971691469*^9, 
+   3.381529019920476*^9}, {3.38152905755729*^9, 3.381529114324318*^9}, 
+   3.38289710590012*^9, {3.386107741367975*^9, 3.3861078076808996`*^9}, {
+   3.3861078560093336`*^9, 3.386107858649976*^9}, {3.386107895915839*^9, 
+   3.386107909603427*^9}, {3.3861079472599173`*^9, 3.386107978135115*^9}, {
+   3.3861081463705673`*^9, 3.3861082071990814`*^9}, {3.386108246730584*^9, 
+   3.386108303715324*^9}, {3.3861083380436687`*^9, 3.386108385762724*^9}, {
+   3.3861085255761185`*^9, 3.386108590139032*^9}, {3.386108637483085*^9, 
+   3.386108643061246*^9}, {3.386108761749505*^9, 3.386108764358897*^9}, {
+   3.3861087963122263`*^9, 3.3861088735470963`*^9}, {3.386108980954033*^9, 
+   3.3861089950634985`*^9}, {3.3861091197205467`*^9, 3.386109141267559*^9}, {
+   3.386109436878826*^9, 3.3861094392225914`*^9}, {3.386109482207241*^9, 
+   3.386109569910928*^9}, {3.3861097503808327`*^9, 3.386109865444069*^9}, {
+   3.3861101674147515`*^9, 3.3861102343058047`*^9}, {3.386117301103456*^9, 
+   3.38611731052372*^9}},
+ CellID->1496021318],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = False, $CellContext`label$$ = 
+    If[$CellContext`w$$ < 7, True, False], $CellContext`rn$$ = 
+    110, $CellContext`w$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 110, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 5, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], 
+       If[$CellContext`w$$ < 7, True, False], "show states"}, {
+      True, False}}, {{
+       Hold[$CellContext`icon$$], False, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5109$$ = 0, $CellContext`w$5110$$ = 
+    0, $CellContext`label$5111$$ = False, $CellContext`icon$5112$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = False, $CellContext`label$$ = 
+        If[$CellContext`w$$ < 7, True, False], $CellContext`rn$$ = 
+        110, $CellContext`w$$ = 5}, "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5109$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5110$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5111$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5112$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 110, "rule number"}, 0, 255, 
+         1, Appearance -> "Labeled"}, {{$CellContext`w$$, 5, "width"}, 3, 12, 
+         1, Appearance -> "Labeled"}, Delimiter, {{$CellContext`label$$, 
+          If[$CellContext`w$$ < 7, True, False], "show states"}, {
+         True, False}}, {{$CellContext`icon$$, False, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1655564525]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection"],
+
+Cell[TextData[{
+ "Each vertex on the graph represents one of the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"2", 
+    StyleBox["^",
+     FontSlant->"Italic"], "n"}], TraditionalForm]], "InlineMath"],
+ " states of a size-",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]], "InlineMath"],
+ " elementary cellular automaton, and is joined to the vertex representing \
+the state reached after one step in the cellular automaton evolution."
+}], "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36915438409245*^9, 3.36915440421258*^9}, {
+   3.36915445464812*^9, 3.36915463385121*^9}, {3.369154680349*^9, 
+   3.36915473189414*^9}, {3.36915512253649*^9, 3.36915512336774*^9}, {
+   3.372113065332757*^9, 3.372113148243298*^9}, {3.377548154592616*^9, 
+   3.377548175520836*^9}, {3.380559672924263*^9, 3.38055968584875*^9}},
+ CellID->875702027],
+
+Cell["", "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36915438409245*^9, 3.36915440421258*^9}, {
+   3.36915445464812*^9, 3.36915463385121*^9}, {3.369154680349*^9, 
+   3.36915473189414*^9}, {3.36915512253649*^9, 3.36915512336774*^9}, {
+   3.372113065332757*^9, 3.372113148243298*^9}, {3.377548154592616*^9, 
+   3.377548173370152*^9}},
+ CellID->1754549913]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = False, $CellContext`label$$ = 
+    True, $CellContext`rn$$ = 22, $CellContext`w$$ = 6, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 22, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 6, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], True, "show states"}, {True, False}}, {{
+       Hold[$CellContext`icon$$], False, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5179$$ = 0, $CellContext`w$5180$$ = 
+    0, $CellContext`label$5181$$ = False, $CellContext`icon$5182$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = False, $CellContext`label$$ = 
+        True, $CellContext`rn$$ = 22, $CellContext`w$$ = 6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5179$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5180$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5181$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5182$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 22, "rule number"}, 0, 255, 1,
+          Appearance -> "Labeled"}, {{$CellContext`w$$, 6, "width"}, 3, 12, 1,
+          Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`label$$, True, "show states"}, {
+         True, False}}, {{$CellContext`icon$$, False, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->127357496]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = False, $CellContext`label$$ = 
+    False, $CellContext`rn$$ = 110, $CellContext`w$$ = 9, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 110, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 9, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], False, "show states"}, {True, False}}, {{
+       Hold[$CellContext`icon$$], False, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5249$$ = 0, $CellContext`w$5250$$ = 
+    0, $CellContext`label$5251$$ = False, $CellContext`icon$5252$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = False, $CellContext`label$$ = 
+        False, $CellContext`rn$$ = 110, $CellContext`w$$ = 9}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5249$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5250$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5251$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5252$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 110, "rule number"}, 0, 255, 
+         1, Appearance -> "Labeled"}, {{$CellContext`w$$, 9, "width"}, 3, 12, 
+         1, Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`label$$, False, "show states"}, {
+         True, False}}, {{$CellContext`icon$$, False, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1603722860],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = False, $CellContext`label$$ = 
+    False, $CellContext`rn$$ = 181, $CellContext`w$$ = 11, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 181, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 11, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], False, "show states"}, {True, False}}, {{
+       Hold[$CellContext`icon$$], False, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5319$$ = 0, $CellContext`w$5320$$ = 
+    0, $CellContext`label$5321$$ = False, $CellContext`icon$5322$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = False, $CellContext`label$$ = 
+        False, $CellContext`rn$$ = 181, $CellContext`w$$ = 11}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5319$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5320$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5321$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5322$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 181, "rule number"}, 0, 255, 
+         1, Appearance -> "Labeled"}, {{$CellContext`w$$, 11, "width"}, 3, 12,
+          1, Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`label$$, False, "show states"}, {
+         True, False}}, {{$CellContext`icon$$, False, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->702854523],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = False, $CellContext`label$$ = 
+    False, $CellContext`rn$$ = 43, $CellContext`w$$ = 7, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 43, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 7, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], False, "show states"}, {True, False}}, {{
+       Hold[$CellContext`icon$$], False, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5389$$ = 0, $CellContext`w$5390$$ = 
+    0, $CellContext`label$5391$$ = False, $CellContext`icon$5392$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = False, $CellContext`label$$ = 
+        False, $CellContext`rn$$ = 43, $CellContext`w$$ = 7}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5389$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5390$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5391$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5392$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 43, "rule number"}, 0, 255, 1,
+          Appearance -> "Labeled"}, {{$CellContext`w$$, 7, "width"}, 3, 12, 1,
+          Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`label$$, False, "show states"}, {
+         True, False}}, {{$CellContext`icon$$, False, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1715909561],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = False, $CellContext`label$$ = 
+    True, $CellContext`rn$$ = 20, $CellContext`w$$ = 6, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 20, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 6, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], True, "show states"}, {True, False}}, {{
+       Hold[$CellContext`icon$$], False, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5459$$ = 0, $CellContext`w$5460$$ = 
+    0, $CellContext`label$5461$$ = False, $CellContext`icon$5462$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = False, $CellContext`label$$ = 
+        True, $CellContext`rn$$ = 20, $CellContext`w$$ = 6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5459$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5460$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5461$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5462$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 20, "rule number"}, 0, 255, 1,
+          Appearance -> "Labeled"}, {{$CellContext`w$$, 6, "width"}, 3, 12, 1,
+          Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`label$$, True, "show states"}, {
+         True, False}}, {{$CellContext`icon$$, False, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->734096164],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = False, $CellContext`label$$ = 
+    True, $CellContext`rn$$ = 19, $CellContext`w$$ = 4, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 19, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 4, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], True, "show states"}, {True, False}}, {{
+       Hold[$CellContext`icon$$], False, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {185., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5529$$ = 0, $CellContext`w$5530$$ = 
+    0, $CellContext`label$5531$$ = False, $CellContext`icon$5532$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = False, $CellContext`label$$ = 
+        True, $CellContext`rn$$ = 19, $CellContext`w$$ = 4}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5529$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5530$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5531$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5532$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 19, "rule number"}, 0, 255, 1,
+          Appearance -> "Labeled"}, {{$CellContext`w$$, 4, "width"}, 3, 12, 1,
+          Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`label$$, True, "show states"}, {
+         True, False}}, {{$CellContext`icon$$, False, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {268., 273.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->660676333],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`icon$$ = True, $CellContext`label$$ = 
+    True, $CellContext`rn$$ = 22, $CellContext`w$$ = 6, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`rn$$], 22, "rule number"}, 0, 255, 1}, {{
+       Hold[$CellContext`w$$], 6, "width"}, 3, 12, 1}, {{
+       Hold[$CellContext`label$$], True, "show states"}, {True, False}}, {{
+       Hold[$CellContext`icon$$], True, "show rule icon"}, {True, False}}}, 
+    Typeset`size$$ = {500., {217., 190.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`rn$5599$$ = 0, $CellContext`w$5600$$ = 
+    0, $CellContext`label$5601$$ = False, $CellContext`icon$5602$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`icon$$ = True, $CellContext`label$$ = 
+        True, $CellContext`rn$$ = 22, $CellContext`w$$ = 6}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`rn$$, $CellContext`rn$5599$$, 0], 
+        Hold[$CellContext`w$$, $CellContext`w$5600$$, 0], 
+        Hold[$CellContext`label$$, $CellContext`label$5601$$, False], 
+        Hold[$CellContext`icon$$, $CellContext`icon$5602$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`icon$$, 
+        Labeled[#, 
+         Grid[{
+           Map[Column[
+             Map[
+             ArrayPlot[{#}, Mesh -> True, Frame -> False, ImageSize -> 
+               8 Length[#]]& , #], Center, Spacings -> 0.025]& , 
+            Thread[{
+              Tuples[{1, 0}, 3], 
+              Map[List, 
+               IntegerDigits[$CellContext`rn$$, 2, 8]]}]]}, Frame -> All, 
+          FrameStyle -> GrayLevel[1/GoldenRatio]]], #]& )[
+        GraphPlot[
+         Map[# -> CellularAutomaton[$CellContext`rn$$, #]& , 
+          Tuples[{1, 0}, $CellContext`w$$]], ImageSize -> {500, 375}, 
+         VertexRenderingFunction -> (With[{$CellContext`p$ = {
+              Darker[Blue, 0.7], 
+              Point[#]}}, 
+           If[
+            Not[$CellContext`label$$], $CellContext`p$, 
+            If[$CellContext`w$$ < 7, 
+             Inset[
+              ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                  Length[#2], 1}], #], 
+             Tooltip[$CellContext`p$, 
+              Dynamic[
+               ArrayPlot[{#2}, Mesh -> True, Frame -> False, ImageSize -> 7 {
+                   Length[#2], 1}]]]]]]& ), DirectedEdges -> True]], 
+      "Specifications" :> {{{$CellContext`rn$$, 22, "rule number"}, 0, 255, 1,
+          Appearance -> "Labeled"}, {{$CellContext`w$$, 6, "width"}, 3, 12, 1,
+          Appearance -> "Labeled"}, 
+        Delimiter, {{$CellContext`label$$, True, "show states"}, {
+         True, False}}, {{$CellContext`icon$$, True, "show rule icon"}, {
+         True, False}}}, 
+      "Options" :> {
+       ControllerLinking -> True, AutorunSequencing -> {{1, 20}, {3, 5}}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{546., {285., 290.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->1496673741]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection"],
+
+Cell[TextData[{
+ "A system of limited size has a behavior that is ultimately repetitive. The \
+maximum possible repetition period for any system is always equal to the \
+total number of possible states of the system. Of the elementary rules, only \
+rule 45 seems to yield periods that always stay close to the maximum of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["2", "n"], "."}], TraditionalForm]], "InlineMath"]
+}], "DetailNotes",
+ CellID->1511972894]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Resize Images"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"ResizeImages"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Rotate and Zoom in 3D"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"RotateAndZoomIn3D"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Drag Locators"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"DragLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Create and Delete Locators"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"CreateAndDeleteLocators"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[" Slider Zoom"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"SliderZoom"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Gamepad Controls"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"GamepadControls"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Automatic Animation"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"AutomaticAnimation"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[" Bookmark Animation"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  ActionDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection"],
+
+Cell["linear feedback shift registers", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3714377318379583`*^9, 3.37143773635367*^9}},
+ CellID->88100804],
+
+Cell["LFSR", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.371437738634964*^9, 3.371437739634983*^9}},
+ CellID->152328860],
+
+Cell["finite size cellular automata", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.371437758900978*^9, 3.371437762947931*^9}, {
+   3.37211320877993*^9, 3.372113211625782*^9}},
+ CellID->316751887],
+
+Cell["STG", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3721131963509274`*^9, 3.37211319738831*^9}},
+ CellID->554434507],
+
+Cell["Garden of Eden states", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3721131992841883`*^9, 3.372113204276589*^9}},
+ CellID->449214816]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection"],
+
+Cell[TextData[ButtonBox["State Networks for Systems of Limited Size",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://wolframscience.com/nksonline/page-961d-text"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36914357812058*^9, 3.36914359528611*^9}, {
+   3.36914363269177*^9, 3.3691436448799*^9}, {3.36914367910081*^9, 
+   3.36914367910081*^9}, {3.3691440407689*^9, 3.36914406958176*^9}, {
+   3.370905563490694*^9, 3.370905571375922*^9}, {3.377548190071594*^9, 
+   3.377548192735815*^9}},
+ CellID->307878655],
+
+Cell[TextData[ButtonBox["Systems of Limited Size and Class 2 Behavior",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://www.wolframscience.com/nksonline/page-255-text"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36914357812058*^9, 3.36914359528611*^9}, {
+   3.36914363269177*^9, 3.3691436448799*^9}, {3.36914367910081*^9, 
+   3.36914367910081*^9}, {3.3691440407689*^9, 3.36914406958176*^9}, {
+   3.377548195967949*^9, 3.377548198559936*^9}},
+ CellID->130768284]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Stephen Wolfram",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Stephen+\
+Wolfram"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Stephen+Wolfram"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.36897253189931*^9, 3.36897254028042*^9}},
+ CellID->394234764]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{722, 873},
+WindowMargins->{{213, Automatic}, {Automatic, 0}},
+ShowSelection->True,
+FrontEndVersion->"6.0 for Microsoft Windows (32-bit) (February 11, 2008)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "WindowsANSI"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "ResizeImages"->{
+  Cell[41443, 915, 310, 8, 22, "ControlSuggestions",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[41756, 925, 677, 16, 22, "ControlSuggestions",
+   CellTags->"RotateAndZoomIn3D"]},
+ "DragLocators"->{
+  Cell[42436, 943, 339, 11, 22, "ControlSuggestions",
+   CellTags->"DragLocators"]},
+ "CreateAndDeleteLocators"->{
+  Cell[42778, 956, 636, 15, 22, "ControlSuggestions",
+   CellTags->"CreateAndDeleteLocators"]},
+ "SliderZoom"->{
+  Cell[43417, 973, 842, 21, 22, "ControlSuggestions",
+   CellTags->"SliderZoom"]},
+ "GamepadControls"->{
+  Cell[44262, 996, 303, 8, 22, "ControlSuggestions",
+   CellTags->"GamepadControls"]},
+ "AutomaticAnimation"->{
+  Cell[44568, 1006, 1411, 31, 22, "ControlSuggestions",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[45982, 1039, 881, 21, 22, "ControlSuggestions",
+   CellTags->"BookmarkAnimation"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"ResizeImages", 49771, 1156},
+ {"RotateAndZoomIn3D", 49879, 1159},
+ {"DragLocators", 49988, 1162},
+ {"CreateAndDeleteLocators", 50103, 1165},
+ {"SliderZoom", 50216, 1168},
+ {"GamepadControls", 50321, 1171},
+ {"AutomaticAnimation", 50433, 1174},
+ {"BookmarkAnimation", 50550, 1177}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[590, 23, 147, 2, 74, "DemoTitle",
+ CellID->700863240],
+Cell[740, 27, 33, 0, 156, "InitializationSection"],
+Cell[CellGroupData[{
+Cell[798, 31, 29, 0, 188, "ManipulateSection"],
+Cell[CellGroupData[{
+Cell[852, 35, 8192, 183, 70, "Input",
+ CellID->1496021318],
+Cell[9047, 220, 3928, 79, 553, "Output",
+ CellID->1655564525]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13021, 305, 36, 0, 136, "ManipulateCaptionSection"],
+Cell[13060, 307, 847, 19, 53, "ManipulateCaption",
+ CellID->875702027],
+Cell[13910, 328, 376, 7, 22, "ManipulateCaption",
+ CellID->1754549913]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14323, 340, 28, 0, 168, "ThumbnailSection"],
+Cell[14354, 342, 3767, 76, 553, "Output",
+ CellID->127357496]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18158, 423, 28, 0, 138, "SnapshotsSection"],
+Cell[18189, 425, 3776, 76, 553, "Output",
+ CellID->1603722860],
+Cell[21968, 503, 3779, 76, 553, "Output",
+ CellID->702854523],
+Cell[25750, 581, 3772, 76, 553, "Output",
+ CellID->1715909561],
+Cell[29525, 659, 3767, 76, 553, "Output",
+ CellID->734096164],
+Cell[33295, 737, 3767, 76, 553, "Output",
+ CellID->660676333],
+Cell[37065, 815, 3764, 76, 587, "Output",
+ CellID->1496673741]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[40866, 896, 26, 0, 232, "DetailsSection"],
+Cell[40895, 898, 471, 10, 68, "DetailNotes",
+ CellID->1511972894]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41403, 913, 37, 0, 120, "ControlSuggestionsSection"],
+Cell[41443, 915, 310, 8, 22, "ControlSuggestions",
+ CellTags->"ResizeImages"],
+Cell[41756, 925, 677, 16, 22, "ControlSuggestions",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[42436, 943, 339, 11, 22, "ControlSuggestions",
+ CellTags->"DragLocators"],
+Cell[42778, 956, 636, 15, 22, "ControlSuggestions",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[43417, 973, 842, 21, 22, "ControlSuggestions",
+ CellTags->"SliderZoom"],
+Cell[44262, 996, 303, 8, 22, "ControlSuggestions",
+ CellTags->"GamepadControls"],
+Cell[44568, 1006, 1411, 31, 22, "ControlSuggestions",
+ CellTags->"AutomaticAnimation"],
+Cell[45982, 1039, 881, 21, 22, "ControlSuggestions",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46900, 1065, 30, 0, 152, "SearchTermsSection"],
+Cell[46933, 1067, 164, 3, 22, "SearchTerms",
+ CellID->88100804],
+Cell[47100, 1072, 137, 3, 22, "SearchTerms",
+ CellID->152328860],
+Cell[47240, 1077, 211, 4, 22, "SearchTerms",
+ CellID->316751887],
+Cell[47454, 1083, 137, 3, 22, "SearchTerms",
+ CellID->554434507],
+Cell[47594, 1088, 156, 3, 22, "SearchTerms",
+ CellID->449214816]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[47787, 1096, 31, 0, 138, "RelatedLinksSection"],
+Cell[47821, 1098, 546, 11, 22, "RelatedLinks",
+ CellID->307878655],
+Cell[48370, 1111, 501, 10, 22, "RelatedLinks",
+ CellID->130768284]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[48908, 1126, 25, 0, 136, "AuthorSection"],
+Cell[48936, 1128, 410, 12, 22, "Author",
+ CellID->394234764]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
